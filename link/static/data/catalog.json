@@ -1,0 +1,37 @@
+{
+    "listName": "Catalog",
+    "catalog": [
+        {
+            "option_id": 1,
+            "option": "Code"
+    },
+        {
+            "option_id": 2,
+            "option": "News"
+    },
+        {
+            "option_id": 3,
+            "option": "Shopping"
+    },
+        {
+            "option_id": 4,
+            "option": "Sport"
+    },
+        {
+            "option_id": 5,
+            "option": "Games"
+    },
+        {
+            "option_id": 6,
+            "option": "Videos"
+    },
+        {
+            "option_id": 7,
+            "option": "Music"
+    },
+        {
+            "option_id": 8,
+            "option": "Work"
+    }
+    ]
+}

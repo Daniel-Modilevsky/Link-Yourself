@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v.5.6.3/css/all.css">
+    <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css" integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.9.0/venobox.css">
+
+
+    <title>Link Yourself - Home Page </title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+<body>
+    <!-- ======= Mobile nav toggle button ======= -->
+    <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+
+    <header>
+        <nav data-aos="zoom-in" class="navbar navbar-light">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="bx bx-search"></i></button>
+            </form>
+        </nav>
+        <div data-aos="zoom-in" class="d-flex flex-column">
+            <div class="search-links">
+                <div class="social-links mt-3 text-center">
+                    <a href="https://google.com" class="twitter" target="_blank"><i class="bx bxl-google"></i></a>
+                    <a href="https://facebook.com" class=" facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
+                    <a href="https://amazon.com" class="instagram" target="_blank"><i class="bx bxl-amazon"></i></a>
+                    <a href="https://youtube.com" class=" google-plus" target="_blank"><i class="bx bxl-youtube"></i></a>
+                    <a href="https://yahoo.com" class=" google-plus" target="_blank"><i class="bx bxl-yahoo"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!-- ======= Aside-nav-bar ======= -->
+     <aside data-aos="fade-up" id="aside-nav">
+        <div class="d-flex flex-column">
+            <div class="search-links">
+                <img src="{% static 'images/logo-1.png' %}">
+                <h1 class="text-light"><a href="/">Link Yourself</a></h1>
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active"><a href="/home/{{user.id}}"><i class="bx bx-home"></i>Home</a></li>
+                    <li><a href="/create/"><i class="bx bx-book-add"></i>URL</a></li>
+                    <li><a href="/show/{{user.id}}"><i class="bx bx-server"></i>My List</a></li>
+                    <li><a href="/catalog/"><i class="bx bx-book-reader"></i> Catalog</a></li>
+                    <li><a href="/cataloglist/"><i class="bx bx-file-blank"></i>Catalog List</a></li>
+                    <li><a href="/listAll/"><i class="bx bx-book-content"></i>All Users List</a></li>
+                    <li><a href="/logout/"><i class="bx bx-window-open"></i>Logout</a></li>
+                </ul>
+            </nav><!-- .nav-menu -->
+            <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+        </div>
+    </aside><!-- End Header -->
+
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+         <div class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Home Page</h2>
+                    <ol>
+                        <li class="active">Home</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- End Breadcrumbs -->
+
+        <div id="container-img-9">
+        <section class="inner-page">
+            <div class="spacer">
+                <div class="container" >
+                        {% if user.is_authenticated %}
+                            <br><br>
+                            <h1>Welcome to Link Yourself  <span style="color: #5b83e0">{{  user.username }}</span>!</h1>
+                            <h2>You are having <span style="color: #36a852">{{ counter }}</span> links</h2>
+                    {% else %}
+                        <a href="/login1/" Login></a>
+                        <a href="/registerProfile/">Register</a>
+                    {% endif %}
+                </div>
+                <div class="container">
+                    <div id="conteiner-p1-c0">
+                        <section class="header-c2"><h3>My Last Links</h3></section>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row mb-5">
+                                        <div class="col-lg-3 col-md-12">
+                                            <p class="h5 mb-4"><a href="{{link_dbs.0.url}}" target="_blank">{{link_dbs.0.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                                                <iframe class="embed-responsive-item" src="{{link_dbs.0.url}}" style="height: 101%"></iframe>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <p class="h5 mb-4"><a href="{{link_dbs.1.url}}" target="_blank"> {{link_dbs.1.name}}"</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-2">
+                                                <iframe class="embed-responsive-item" src="{{link_dbs.1.url}}" style="height:100%"></iframe>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <p class="h5 mb-4"><a href="{{link_dbs.2.url}}" target="_blank">{{link_dbs.2.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-5">
+                                                <iframe class="embed-responsive-item" src="{{link_dbs.2.url}}"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+\
+                                <div class="carousel-item">
+                                    <div class="row mb-5">
+                                        <div class="col-lg-3 col-md-12">
+                                            <p class="h5 mb-4"><a href="{{link_dbs.3.url}}" target="_blank">{{link_dbs.3.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                                                <iframe class="embed-responsive-item" src="{{link_dbs.3.url}}" style="height: 101%"></iframe>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <p class="h5 mb-4"><a href="{{link_dbs.4.url}}" target="_blank"> {{link_dbs.4.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-2">
+                                                <iframe class="embed-responsive-item" src="{{link_dbs.4.url}}" style="height: 101%"></iframe>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <p class="h5 mb-4"><a href="{{link_dbs.5.url}}" target="_blank">{{link_dbs.5.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-5">
+                                                <iframe class="embed-responsive-item" src="{{link_dbs.5.url}}"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+      <section class="inner-page">
+            <div class="spacer">
+                <div class="container">
+                    <div id="conteiner-p1-c0">
+                        <section class="header-c2"><h4>User's Recommendations</h4></section>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row mb-5">
+                                        <div class="col-lg-3 col-md-12">
+                                            <p class="h5 mb-4"><a href="{{link_all.0.url}}" target="_blank">{{link_all.0.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                                                <iframe class="embed-responsive-item" src="{{link_all.0.url}}" style="height: 101%"></iframe>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <p class="h5 mb-4"><a href="{{link_all.1.url}}" target="_blank"> {{link_all.1.name}}"</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-2">
+                                                <iframe class="embed-responsive-item" src="{{link_all.1.url}}" style="height:100%"></iframe>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <p class="h5 mb-4"><a href="{{link_all.2.url}}" target="_blank">{{link_all.2.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-5">
+                                                <iframe class="embed-responsive-item" src="{{link_all.2.url}}"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+\
+                                <div class="carousel-item">
+                                    <div class="row mb-5">
+                                        <div class="col-lg-3 col-md-12">
+                                            <p class="h5 mb-4"><a href="{{link_all.3.url}}" target="_blank">{{link_all.3.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                                                <iframe class="embed-responsive-item" src="{{link_all.3.url}}" style="height: 101%"></iframe>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <p class="h5 mb-4"><a href="{{link_all.4.url}}" target="_blank"> {{link_all.4.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-2">
+                                                <iframe class="embed-responsive-item" src="{{link_all.4.url}}" style="height: 101%"></iframe>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <p class="h5 mb-4"><a href="{{link_all.5.url}}" target="_blank">{{link_all.5.name}}</a></p>
+                                            <div class="embed-responsive embed-responsive-16by9 z-depth-5">
+                                                <iframe class="embed-responsive-item" src="{{link_all.5.url}}"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+    </main><!-- End #main -->
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+
+
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.9.0/venobox.js"></script>
+
+
+    <script src="{% static 'js/main.js' %} "></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
